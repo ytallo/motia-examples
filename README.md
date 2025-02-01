@@ -1,4 +1,4 @@
-# Awesome Motif Examples 🚀
+# Awesome Motia Examples 🚀
 
 A curated list of examples, tutorials, and resources built with [Motia](https://motia.dev/). 
 
