@@ -11,7 +11,7 @@ This project demonstrates the use of Motia for performing retrieval-augmented ge
   - [Indexing New Webpage](#indexing-new-webpage)
   - [Performing RAG](#performing-rag)
 - [Configuration](#configuration)
-- [src](#src code)
+- [src](#src)
 - [License](#license)
 
 ## Installation
@@ -125,7 +125,7 @@ The `rag_config.yml` file contains various parameters that you can modify to cus
 - `prompt`: The template used to generate prompts for the language model. You can modify this to change how the model interprets and responds to queries.
 - `num_retrival`: The number of nearest neighbors to retrieve during the k-NN search. Increasing this can provide more context but may also include less relevant information.
 
-## SRC
+## Src
 The functionality of the respective step.py files are defined in their corresponding .py files in src, you can modify these to better suit your needs,
 
 - `parse.py`: This file contains functions for parsing the provided website url and and saving it to a text file.
