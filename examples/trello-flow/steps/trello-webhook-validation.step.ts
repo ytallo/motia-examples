@@ -10,8 +10,8 @@ export const config: ApiRouteConfig = {
   path: '/trello/webhook',
   method: 'HEAD',
   bodySchema: inputSchema,
-  emits: [{ type: 'trello.webhook', label: 'Trello Webhook Validation' }],
-  virtualEmits: [{ type: 'trello.webhook', label: 'Trello Webhook Validation' }],
+  emits: [{ topic: 'api.trello.webhook', label: 'Trello Webhook Validation' }],
+  virtualEmits: [{ topic: 'api.trello.webhook', label: 'Trello Webhook Validation' }],
   flows: ['trello'],
 }
 

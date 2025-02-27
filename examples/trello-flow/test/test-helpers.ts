@@ -1,7 +1,7 @@
-import { Logger, FlowContext, InternalStateManager } from '@motiadev/core'
+import { globalLogger, Logger, FlowContext, InternalStateManager } from '@motiadev/core'
 
 export const createMockLogger = () => {
-  const mockLogger = new Logger('test-trace-id', ['test-flow'], 'test-file') as jest.Mocked<Logger>
+  const mockLogger = globalLogger.child({ traceId: 'test-trace-id' }) as jest.Mocked<Logger>
   return mockLogger
 }
 
