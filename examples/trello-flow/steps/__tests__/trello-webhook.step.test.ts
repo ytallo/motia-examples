@@ -45,7 +45,7 @@ describe('Trello Webhook Handler', () => {
     const response = await handler(createApiRequest(mockCreateCardWebhook), mockContext)
 
     expect(mockContext.emit).toHaveBeenCalledWith({
-      type: 'card.created',
+      topic: 'card.created',
       data: {
         id: mockCard.id,
         name: mockCard.name,
@@ -70,7 +70,7 @@ describe('Trello Webhook Handler', () => {
     const response = await handler(createApiRequest(mockCommentCardWebhook), mockContext)
 
     expect(mockContext.emit).toHaveBeenCalledWith({
-      type: 'card.commented',
+      topic: 'card.commented',
       data: {
         card: {
           id: mockCard.id,
@@ -98,7 +98,7 @@ describe('Trello Webhook Handler', () => {
     const response = await handler(createApiRequest(mockCustomFieldUpdateWebhook), mockContext)
 
     expect(mockContext.emit).toHaveBeenCalledWith({
-      type: 'card.updateCustomFieldItem',
+      topic: 'card.updateCustomFieldItem',
       data: {
         id: mockCard.id,
         customFieldItem: mockCard.customFieldItems[0],
@@ -119,7 +119,7 @@ describe('Trello Webhook Handler', () => {
     const response = await handler(createApiRequest(mockMemberAssignmentWebhook), mockContext)
 
     expect(mockContext.emit).toHaveBeenCalledWith({
-      type: 'member.assigned',
+      topic: 'member.assigned',
       data: {
         id: mockCard.id,
       },
@@ -140,7 +140,7 @@ describe('Trello Webhook Handler', () => {
 
     const payload = {
       action: {
-        type: 'updateCard',
+        topic: 'updateCard',
         data: {
           card: {
             id: '123',

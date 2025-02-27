@@ -38,10 +38,10 @@ export const config: ApiRouteConfig = {
   path: '/trello/webhook',
   method: 'POST',
   emits: [
-    { type: 'card.created', label: 'Card Created' },
-    { type: 'card.updateCustomFieldItem', label: 'Card Custom Field Updated' },
-    { type: 'card.commented', label: 'Card Comment Added' },
-    { type: 'member.assigned', label: 'Member Assigned to Card' },
+    { topic: 'card.created', label: 'Card Created' },
+    { topic: 'card.updateCustomFieldItem', label: 'Card Custom Field Updated' },
+    { topic: 'card.commented', label: 'Card Comment Added' },
+    { topic: 'member.assigned', label: 'Member Assigned to Card' },
   ],
   virtualSubscribes: ['api.trello.webhook'],
   bodySchema: inputSchema,
@@ -73,7 +73,7 @@ export const handler = async (request: ApiRequest, context: FlowContext) => {
 
 const handleCreateCard = (card: TrelloCardDetails, context: FlowContext) => {
   context.emit({
-    type: 'card.created',
+    topic: 'card.created',
     data: {
       id: card.id,
       name: card.name,
@@ -86,7 +86,7 @@ const handleCreateCard = (card: TrelloCardDetails, context: FlowContext) => {
 
 const handleCustomFieldUpdate = (card: TrelloCardDetails, context: FlowContext) => {
   context.emit({
-    type: 'card.updateCustomFieldItem',
+    topic: 'card.updateCustomFieldItem',
     data: {
       id: card.id,
       customFieldItem: card.customFieldItems?.[0],
@@ -96,7 +96,7 @@ const handleCustomFieldUpdate = (card: TrelloCardDetails, context: FlowContext) 
 
 const handleMemberAssignment = (card: TrelloCardDetails, context: FlowContext) => {
   context.emit({
-    type: 'member.assigned',
+    topic: 'member.assigned',
     data: {
       id: card.id,
     },
@@ -105,7 +105,7 @@ const handleMemberAssignment = (card: TrelloCardDetails, context: FlowContext) =
 
 const handleCardComment = (card: TrelloCardDetails, context: FlowContext, {action}: WebhookAction) => {
   context.emit({
-    type: 'card.commented',
+    topic: 'card.commented',
     data: {
       card: {
         id: card.id,

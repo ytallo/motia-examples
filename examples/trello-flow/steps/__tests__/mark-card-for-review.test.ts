@@ -60,7 +60,7 @@ describe('Mark Card For Review', () => {
 
     expect(mockMoveCard).toHaveBeenCalledWith('card-123', appConfig.trello.lists.needsReview)
     expect(mockContext.emit).toHaveBeenCalledWith({
-      type: 'notify.slack',
+      topic: 'notify.slack',
       data: {
         channel: '#code-review',
         message: expect.stringContaining(mockSummary),

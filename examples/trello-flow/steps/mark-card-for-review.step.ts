@@ -46,7 +46,7 @@ export const handler: StepHandler<typeof config> = async (input, { emit, logger 
     await trelloService.addComment(card.id, `🔍 Task is ready for review!\n📝 Summary below: \n${summary}`)
 
     await emit({
-      type: 'notify.slack',
+      topic: 'notify.slack',
       data: {
         channel: '#code-review',
         message: `New task ready for review: ${card.name}\n${summary}`,
