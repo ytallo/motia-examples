@@ -1,9 +1,8 @@
-import { Logger, FlowContext } from '@motiadev/core'
+import { createMockContext } from '@motiadev/test'
 import { TrelloService } from '../../services/trello.service'
 import { OpenAIService } from '../../services/openai.service'
 import { handler } from '../mark-card-for-review.step'
 import { appConfig } from '../../config/default'
-import { createMockLogger, createMockContext } from '../../test/test-helpers'
 
 jest.mock('../../services/trello.service')
 jest.mock('../../services/openai.service')

@@ -1,6 +1,6 @@
 import OpenAI from 'openai'
+import { Logger } from 'motia'
 import { appConfig } from '../config/default'
-import { Logger } from '@motiadev/core'
 
 export class OpenAIService {
   private openai: OpenAI

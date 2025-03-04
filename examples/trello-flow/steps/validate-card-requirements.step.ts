@@ -1,4 +1,4 @@
-import { EventConfig, StepHandler } from '@motiadev/core'
+import { EventConfig, StepHandler } from 'motia'
 import { z } from 'zod'
 import { appConfig } from '../config/default'
 import { TrelloService } from '../services/trello.service'
@@ -25,7 +25,7 @@ export const config: EventConfig<typeof inputSchema> = {
 
 export const handler: StepHandler<typeof config> = async (card, { logger }) => {
   logger.info('New task validator', { card })
-  const trello = new TrelloService(appConfig.trello)
+  const trello = new TrelloService(appConfig.trello, logger)
 
   try {
     inputSchema.parse(card)

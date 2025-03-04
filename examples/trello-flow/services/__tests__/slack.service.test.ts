@@ -1,22 +1,20 @@
-import { SlackService } from '../slack.service'
 import axios from 'axios'
-import { BaseLogger } from '@motiadev/core'
+import {Logger} from "motia";
+import {createMockLogger} from "@motiadev/test";
+import {SlackService} from '../slack.service'
 
 jest.mock('axios')
-jest.mock('@motiadev/core')
+jest.mock('motia')
 
 describe('SlackService', () => {
   let slackService: SlackService
   const mockWebhookUrl = 'https://hooks.slack.com/test'
-  let mockLogger: jest.Mocked<BaseLogger>
+  let mockLogger: jest.Mocked<Logger>
 
   beforeEach(() => {
-    mockLogger = {
-      error: jest.fn(),
-    } as any
-    ;(BaseLogger as jest.MockedClass<typeof BaseLogger>).mockImplementation(() => mockLogger)
+    mockLogger = createMockLogger()
 
-    slackService = new SlackService(mockWebhookUrl)
+    slackService = new SlackService(mockWebhookUrl, mockLogger)
     ;(axios.post as jest.Mock).mockClear()
   })
 

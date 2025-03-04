@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { ApiRouteConfig, FlowContext, ApiRequest } from '@motiadev/core'
+import { ApiRouteConfig, FlowContext, ApiRequest } from 'motia'
 import { TrelloCardDetails } from '../types/trello'
 import { TrelloService } from '../services/trello.service'
 import { appConfig } from '../config/default'
@@ -59,7 +59,7 @@ export const handler = async (request: ApiRequest, context: FlowContext) => {
     commentCard: handleCardComment,
   }
 
-  const trelloService = new TrelloService(appConfig.trello)
+  const trelloService = new TrelloService(appConfig.trello, context.logger)
   const card = await trelloService.getCard(payload.action.data.card.id)
 
   const handler = handlers[payload.action.type]
@@ -109,7 +109,7 @@ const handleCardComment = (card: TrelloCardDetails, context: FlowContext, {actio
     data: {
       card: {
         id: card.id,
-        list: action.data.list,
+        list: action.data.list?.id || card.idList,
       },
       comment: {
         text: action?.data?.text || '',

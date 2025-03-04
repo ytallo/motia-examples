@@ -1,14 +1,13 @@
 import axios, { AxiosInstance } from 'axios'
-import { globalLogger } from '@motiadev/core'
+import { Logger } from 'motia'
 import { TrelloCardDetails, TrelloConfig } from '../types/trello'
 
 export class TrelloService {
   private baseUrl = 'https://api.trello.com/1'
   private api: AxiosInstance
-  private logger: typeof globalLogger
+  private logger: Logger
 
-  constructor(private config: TrelloConfig) {
-    globalLogger.info('TrelloService constructor')
+  constructor(private config: TrelloConfig, logger: Logger) {
     this.api = axios.create({
       baseURL: this.baseUrl,
       params: {
@@ -16,7 +15,7 @@ export class TrelloService {
         token: this.config.token,
       },
     })
-    this.logger = globalLogger.child({ service: 'TrelloService' })
+    this.logger = logger
   }
 
   async moveCard(cardId: string, listId: string) {

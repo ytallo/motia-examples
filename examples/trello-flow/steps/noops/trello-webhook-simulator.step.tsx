@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ApiNode, ApiNodeProps, Button } from '@motiadev/workbench'
+import { ApiNode, ApiNodeProps, Button } from 'motia/workbench'
 import * as Select from '@radix-ui/react-select'
 import { ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons'
 

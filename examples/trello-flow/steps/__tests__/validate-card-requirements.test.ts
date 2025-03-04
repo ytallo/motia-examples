@@ -1,10 +1,10 @@
-import { Logger, FlowContext } from '@motiadev/core'
+import { Logger, FlowContext } from 'motia'
+import { createMockLogger, createMockContext } from '@motiadev/test'
 import { handler } from '../validate-card-requirements.step'
 import { TrelloService } from '../../services/trello.service'
-import { createMockLogger, createMockContext, setupLoggerMock } from '../../test/test-helpers'
 
 jest.mock('../../services/trello.service')
-jest.mock('@motiadev/core')
+jest.mock('motia')
 
 describe('Validate Card Requirements', () => {
   let mockLogger: jest.Mocked<Logger>
@@ -13,9 +13,8 @@ describe('Validate Card Requirements', () => {
   let mockMoveCard: jest.Mock
 
   beforeEach(() => {
-    setupLoggerMock()
     mockLogger = createMockLogger()
-    mockContext = createMockContext(mockLogger)
+    mockContext = createMockContext({ logger: mockLogger })
     mockAddComment = jest.fn()
     mockMoveCard = jest.fn()
 

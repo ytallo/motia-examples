@@ -1,4 +1,4 @@
-import { EventConfig, StepHandler } from '@motiadev/core'
+import { EventConfig, StepHandler } from 'motia'
 import { z } from 'zod'
 import { TrelloService } from '../services/trello.service'
 import { OpenAIService } from '../services/openai.service'
@@ -28,7 +28,7 @@ export const config: EventConfig<typeof inputSchema> = {
 export const handler: StepHandler<typeof config> = async (input, { emit, logger }) => {
   logger.info('Needs Review Handler', { input })
 
-  const trelloService = new TrelloService(appConfig.trello)
+  const trelloService = new TrelloService(appConfig.trello, logger)
   const openaiService = new OpenAIService(logger)
 
   const card = await trelloService.getCard(input.id)

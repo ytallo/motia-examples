@@ -1,11 +1,11 @@
 import axios from 'axios'
-import { BaseLogger } from '@motiadev/core'
+import { Logger } from 'motia'
 
 export class SlackService {
-  private logger: BaseLogger
+  private logger: Logger
 
-  constructor(private webhookUrl: string) {
-    this.logger = new BaseLogger({ service: 'SlackService' })
+  constructor(private webhookUrl: string, logger: Logger) {
+    this.logger = logger
   }
 
   async sendMessage(channel: string, message: string) {
