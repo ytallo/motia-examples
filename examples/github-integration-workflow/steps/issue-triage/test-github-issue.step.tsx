@@ -1,5 +1,5 @@
 import React from 'react'
-import { BaseHandle, Position } from 'motia'
+import { BaseHandle, Position } from 'motia/workbench'
 
 export default function TestGithubIssue() {
   const sendWebhook = (action: 'opened' | 'edited' | 'closed') => {
