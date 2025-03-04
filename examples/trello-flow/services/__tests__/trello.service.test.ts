@@ -1,8 +1,9 @@
 import axios from 'axios'
+import {createMockLogger} from "@motiadev/test";
 import { TrelloService } from '../trello.service'
 
 jest.mock('axios')
-jest.mock('@motiadev/core')
+jest.mock('motia')
 
 describe('TrelloService', () => {
   let trelloService: TrelloService
@@ -28,7 +29,7 @@ describe('TrelloService', () => {
       post: mockPost,
     })
 
-    trelloService = new TrelloService(mockConfig)
+    trelloService = new TrelloService(mockConfig, createMockLogger())
   })
 
   describe('moveCard', () => {

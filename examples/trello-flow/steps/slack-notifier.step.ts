@@ -1,4 +1,4 @@
-import { EventConfig, StepHandler } from '@motiadev/core'
+import { EventConfig, StepHandler } from 'motia'
 import { z } from 'zod'
 import { SlackService } from '../services/slack.service'
 import { appConfig } from '../config/default'
@@ -20,6 +20,6 @@ export const config: EventConfig<typeof inputSchema> = {
 
 export const handler: StepHandler<typeof config> = async (notification, { logger }) => {
   logger.info('Sending notification to Slack', { notification })
-  const slack = new SlackService(appConfig.slack.webhookUrl)
+  const slack = new SlackService(appConfig.slack.webhookUrl, logger)
   await slack.sendMessage(notification.channel, notification.message)
 }

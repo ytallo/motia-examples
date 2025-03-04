@@ -1,6 +1,6 @@
+import { createMockContext } from '@motiadev/test'
 import { handler } from '../slack-notifier.step'
 import { SlackService } from '../../services/slack.service'
-import { createMockContext } from '../../test/test-helpers'
 
 jest.mock('../../services/slack.service')
 

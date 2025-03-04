@@ -1,7 +1,7 @@
-import { ApiRequest } from '@motiadev/core'
+import { ApiRequest } from 'motia'
+import { createMockContext } from '@motiadev/test'
 import { handler } from '../trello-webhook.step'
 import { TrelloService } from '../../services/trello.service'
-import { createMockContext } from '../../test/test-helpers'
 import {
   mockCreateCardWebhook,
   mockCommentCardWebhook,
@@ -140,7 +140,7 @@ describe('Trello Webhook Handler', () => {
 
     const payload = {
       action: {
-        topic: 'updateCard',
+        type: 'updateCard',
         data: {
           card: {
             id: '123',

@@ -1,9 +1,9 @@
+import { createMockContext } from '@motiadev/test'
 import { handler } from '../complete-approved-card.step'
 import { TrelloService } from '../../services/trello.service'
 import { appConfig } from '../../config/default'
-import { createMockContext } from '../../test/test-helpers'
 
-jest.mock('@motiadev/core')
+jest.mock('motia')
 jest.mock('../../services/trello.service')
 jest.mock('../../config/default', () => ({
   appConfig: {

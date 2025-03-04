@@ -1,4 +1,4 @@
-import { ApiRouteConfig, ApiRequest, FlowContext } from '@motiadev/core'
+import { ApiRouteConfig, ApiRequest, FlowContext } from 'motia'
 import { z } from 'zod'
 
 const inputSchema = z.object({})

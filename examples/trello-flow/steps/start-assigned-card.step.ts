@@ -1,4 +1,4 @@
-import { EventConfig, StepHandler } from '@motiadev/core'
+import { EventConfig, StepHandler } from 'motia'
 import { z } from 'zod'
 import { TrelloService } from '../services/trello.service'
 import { appConfig } from '../config/default'
@@ -21,7 +21,7 @@ export const config: EventConfig<typeof inputSchema> = {
 export const handler: StepHandler<typeof config> = async (payload, { logger }) => {
   try {
     logger.info('Start Assigned Card Handler', { payload })
-    const trelloService = new TrelloService(appConfig.trello)
+    const trelloService = new TrelloService(appConfig.trello, logger)
     const card = await trelloService.getCard(payload.id)
 
     if (card.idList === appConfig.trello.lists.newTasks && card.members.length > 0) {

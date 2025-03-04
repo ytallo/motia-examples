@@ -1,20 +1,17 @@
-import { FlowContext, Logger } from '@motiadev/core'
+import { createMockContext, MockFlowContext } from "@motiadev/test";
 import { TrelloService } from '../../services/trello.service'
 import { handler } from '../check-overdue-cards.step'
-import { createMockLogger, createMockContext } from '../../test/test-helpers'
 
-jest.mock('@motiadev/core')
+jest.mock('motia')
 jest.mock('../../services/trello.service')
 
 describe('Check Overdue Cards', () => {
-  let mockLogger: jest.Mocked<Logger>
-  let mockContext: FlowContext
+  let mockContext: MockFlowContext
   let mockGetCardsInList: jest.Mock
   let mockAddComment: jest.Mock
 
   beforeEach(() => {
-    mockLogger = createMockLogger()
-    mockContext = createMockContext(mockLogger)
+    mockContext = createMockContext()
     mockGetCardsInList = jest.fn()
     mockAddComment = jest.fn()
 

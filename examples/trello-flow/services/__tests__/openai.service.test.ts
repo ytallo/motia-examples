@@ -1,7 +1,8 @@
 import OpenAI from 'openai'
-import { OpenAIService } from '../openai.service'
-import { Logger } from '@motiadev/core'
-import { appConfig } from '../../config/default'
+import {Logger} from "motia";
+import {createMockLogger} from "@motiadev/test";
+import {OpenAIService} from '../openai.service'
+import {appConfig} from '../../config/default'
 
 jest.mock('openai')
 jest.mock('../../config/default', () => ({
@@ -20,10 +21,7 @@ describe('OpenAIService', () => {
 
   beforeEach(() => {
     mockCreateCompletion = jest.fn()
-    mockLogger = {
-      info: jest.fn(),
-      error: jest.fn(),
-    } as any
+    mockLogger = createMockLogger()
     ;(OpenAI as jest.MockedClass<typeof OpenAI>).mockImplementation(
       () =>
         ({
